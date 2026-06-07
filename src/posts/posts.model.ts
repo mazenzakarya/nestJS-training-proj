@@ -1,7 +1,8 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PostStatus } from "./Enums/PostStatus.enum";
 import { User } from "../users/users.model";
 import { PostType } from "./Enums/PostType.enum";
+import { MetaOption } from "../meta-option/meta-option.model";
 
 
 @Entity()
@@ -51,7 +52,7 @@ export class Post {
     @ManyToOne(() => User, user => user.posts)
     author!: User;
 
-    @Column()
-    metaOptionsId!: number;
+    @OneToOne(() => MetaOption, metaOption => metaOption.post)
+    metaOptions?: MetaOption | null;
 
 }

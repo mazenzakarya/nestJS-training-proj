@@ -1,6 +1,7 @@
 import { IsEAN, IsEnum, IsJSON, IsNotEmpty, IsOptional, IsString, Matches, MaxLength, MinLength } from "class-validator";
 import { PostType } from "../Enums/PostType.enum";
 import { PostStatus } from "../Enums/PostStatus.enum";
+import { CreateMetaOptionsDto } from "../../meta-option/DTOs/CreateMetaOptionsDto";
 
 export class CreatePostDto {
     @IsString()
@@ -34,5 +35,7 @@ export class CreatePostDto {
     featuredImage: string = '';
     publishedAt: Date = new Date();
     authorId: number = 0;
-    metaOptionsId: number = 0;
+
+    @IsOptional()
+    metaOptions?: CreateMetaOptionsDto | null = null;
 }
