@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
-import { CreateUserDto } from '../../DTOs/CreateUserDto';
+import { Body, Controller, Delete, Get, Param, Post, Put, ValidationPipe } from '@nestjs/common';
+import { CreateUserDto } from './DTOs/CreateUserDto';
 import { UsersService } from './providers/users.service';
+import { UpdateUserDto } from './DTOs/UpdateUserDto';
 
 @Controller('users')
 export class UsersController {
@@ -10,7 +11,7 @@ export class UsersController {
 
     @Get()
     public getUsers() {
-        return 'This action returns all users';
+        return this.usersService.getAllUsers();
     }
 
     @Post()
@@ -19,6 +20,25 @@ export class UsersController {
         return this.usersService.createUser(createUserDto);
     }
 
+    @Get(':id')
+    public getUserById(@Param('id') id: number) {
+        return this.usersService.getUserById(id);
+    }
+
+    @Delete(':id')
+    public deleteUser(@Param('id') id: number) {
+        return this.usersService.deleteUser(id);
+    }
+
+    @Delete('soft/:id')
+    public softDeleteUser(@Param('id') id: number) {
+        return this.usersService.softDeleteUser(id);
+    }
+
+    @Put(':id')
+    public updateUser(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
+        return this.usersService.updateUser(id, updateUserDto);
+    }
 
 
 }
