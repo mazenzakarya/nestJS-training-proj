@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/users.model';
 import { TagsModule } from './tags/tags.module';
 import { PostsModule } from './posts/posts.module';
+import { MetaOptionModule } from './meta-option/meta-option.module';
 
 
 @Module({
@@ -23,7 +24,7 @@ import { PostsModule } from './posts/posts.module';
       password: '123'
     }),
 
-  }), TagsModule, PostsModule],
+  }), TagsModule, PostsModule, MetaOptionModule],
   controllers: [AppController],
   providers: [AppService],
 })
