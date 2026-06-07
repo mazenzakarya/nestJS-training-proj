@@ -7,6 +7,9 @@ import { User } from './users/users.model';
 import { TagsModule } from './tags/tags.module';
 import { PostsModule } from './posts/posts.module';
 import { MetaOptionModule } from './meta-option/meta-option.module';
+import { MetaOption } from './meta-option/meta-option.model';
+import { Post } from './posts/posts.model';
+import { Tag } from './tags/tags.model';
 
 
 @Module({
@@ -17,7 +20,7 @@ import { MetaOptionModule } from './meta-option/meta-option.module';
       type: 'postgres',
       host: 'localhost',
       database: 'testdb',
-      entities: [User],
+      entities: [User, MetaOption, Post, Tag],
       synchronize: true,
       port: 5432,
       username: 'postgres',
